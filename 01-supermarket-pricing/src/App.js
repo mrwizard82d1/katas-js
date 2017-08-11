@@ -16,34 +16,21 @@ class App extends Component {
         <section>
           <h1>Javascript Katas</h1>
           <h1><small>Supermarket Pricing</small></h1>
-          <div className="container">
-            <div className="panel panel-default">
-              <div className="panel-heading">
-                <h3 class="panel-title">Bean Pricing</h3>
-              </div>
-              <div className="panel-body">
-                <div className="row">
-                  <label htmlFor="simple-unit-price" className="input-label col-md-6">
-                    Price per can:
-                  </label>
-                  <input type="number" id="simple-unit-price col-md-6" />
-                </div>
-                <div className="row">
-                    <label htmlFor="simple-quantity" className="input-label col-md-6">Cans:</label>
-                    <input type="number" id="simple-quantity col-md-6" />
-                </div>
-                <div className="row">
-                  <label htmlFor="simple-extended-price" className="input-label col-md-6">
-                    Extended price:
-                  </label>
-                  <input type="number"
-                         id="simple-extended-price"
-                         readOnly={true}
-                         className="col-md-6"/>
-                </div>
-              </div>
+          <section>
+            <h3>Bean pricing</h3>
+            <div>
+              <label htmlFor="simple-unit-price" className="input-label">Price per can:</label>
+              <input type="number" id="simple-unit-price"/>
             </div>
-          </div>
+            <div>
+              <label htmlFor="simple-quantity" className="input-label">Cans:</label>
+              <input type="number" id="simple-quantity" />
+            </div>
+            <div>
+              <label htmlFor="simple-extended-price" className="input-label">Extended price:</label>
+              <input type="number" id="simple-extended-price" readOnly={true} />
+            </div>
+          </section>
         </section>
       </div>
     );
