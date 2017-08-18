@@ -3,6 +3,21 @@ import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
+  constructor() {
+    super();
+    
+    this.state = {
+      unitPrice: 0,
+      quantity: 0,
+    };
+    
+    this.extendedPrice = this.extendedPrice.bind(this);
+  }
+  
+  extendedPrice() {
+    return this.state.unitPrice * this.state.quantity;
+  }
+  
   render() {
     return (
       <div className="App">
@@ -20,15 +35,22 @@ class App extends Component {
             <h3>Bean pricing</h3>
             <div>
               <label htmlFor="simple-unit-price" className="input-label">Price per can:</label>
-              <input type="number" id="simple-unit-price"/>
+              <input
+                type="number"
+                id="simple-unit-price"
+                value={this.state.unitPrice.toLocaleString()} />
             </div>
             <div>
               <label htmlFor="simple-quantity" className="input-label">Cans:</label>
-              <input type="number" id="simple-quantity" />
+              <input type="number" id="simple-quantity" value={this.state.quantity} />
             </div>
             <div>
               <label htmlFor="simple-extended-price" className="input-label">Extended price:</label>
-              <input type="number" id="simple-extended-price" readOnly={true} />
+              <input
+                type="number"
+                id="simple-extended-price"
+                value={this.extendedPrice().toLocaleString()}
+                readOnly={true} />
             </div>
           </section>
         </section>
