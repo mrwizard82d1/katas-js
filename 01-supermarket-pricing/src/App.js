@@ -3,8 +3,8 @@ import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     
     this.state = {
       unitPrice: 0,
@@ -12,10 +12,20 @@ class App extends Component {
     };
     
     this.extendedPrice = this.extendedPrice.bind(this);
+    this.whenUnitPriceChanged = this.whenUnitPriceChanged.bind(this);
+    this.whenQuantityChanged = this.whenQuantityChanged.bind(this);
   }
   
   extendedPrice() {
     return this.state.unitPrice * this.state.quantity;
+  }
+  
+  whenUnitPriceChanged(evt) {
+    this.setState({ unitPrice: evt.target.value });
+  }
+  
+  whenQuantityChanged(evt) {
+    this.setState({ quantity: evt.target.value });
   }
   
   render() {
@@ -38,18 +48,28 @@ class App extends Component {
               <input
                 type="number"
                 id="simple-unit-price"
-                value={this.state.unitPrice.toLocaleString()} />
+                value={ this.state.unitPrice }
+                onChange={ this.whenUnitPriceChanged } />
             </div>
             <div>
               <label htmlFor="simple-quantity" className="input-label">Cans:</label>
-              <input type="number" id="simple-quantity" value={this.state.quantity} />
+              <input
+                type="number"
+                id="simple-quantity"
+                value={ this.state.quantity }
+                onChange={ this.whenQuantityChanged } />
             </div>
             <div>
               <label htmlFor="simple-extended-price" className="input-label">Extended price:</label>
               <input
-                type="number"
                 id="simple-extended-price"
-                value={this.extendedPrice().toLocaleString()}
+                value={
+                  this.extendedPrice().toLocaleString("us-US", {
+                    style: "currency",
+                    currency: "USD",
+                    minimumFractionDigits: 2
+                  })
+                }
                 readOnly={true} />
             </div>
           </section>
